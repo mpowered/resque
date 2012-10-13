@@ -3,9 +3,9 @@
 export HOME=<%= @options[:log_dir] %>
 export RAILS_ENV=<%= node.chef_environment %>
 exec 2>&1
-exec chpst -u <%= @options[:user] %> /usr/local/bin/resque-web --foreground --no-launch     \
+exec chpst -u <%= @options[:user] %> /opt/chef/embedded/bin/resque-web --foreground --no-launch     \
   --server      thin                                                                  \
   --port        <%= @options[:dashboard][:port]   %>                                  \
   --app-dir     <%= @options[:log_dir] %>                                             \
-  --env         <$= node.chef_environment %>                                          \
+  --env         <%= node.chef_environment %>                                          \
   <%= @options[:conf_dir] %>/resque_conf.rb
